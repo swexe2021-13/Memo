@@ -1,6 +1,11 @@
 <% @diaries.each do |e| %>
+    <p>
     <%= e.title %>
     <%= e.message %>
+    <%= image_tag "/get_image/#{e.id}" %>
+    <%= link_to '削除', "/diaries/#{e.id}", method: :delete %>
+    <%= link_to '編集', "/diaries/#{e.id}/edit" %>
+    </p>
 
 <% end %>
 <p><%= link_to '新規追加', '/diaries/new' %></p>

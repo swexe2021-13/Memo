@@ -1,11 +1,8 @@
-<%= form_for @diary, url: {action: :create} do |f| %>
+<%= form_for @diary , url: {action: :update} do |f| %>
 <%= f.label :title, 'タイトル' %>
 <%= f.text_field :title %>
 <%= f.label :message, 'メッセージ' %>
 <%= f.text_field :message %>
 
-<%= f.label :file, 'ファイル' %>
-<%= f.file_field :file %>
-
-<%= f.submit '登録' %>
+<%= f.submit '更新' %>
 <% end %>
