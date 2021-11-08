@@ -1,0 +1,6 @@
+<% @diaries.each do |e| %>
+    <%= e.title %>
+    <%= e.message %>
+
+<% end %>
+<p><%= link_to '新規追加', '/diaries/new' %></p>
