@@ -18,7 +18,7 @@ class LoginController < ApplicationController
         render 'error'
       end
     else
-      redirect_to root_path
+      render'error'
     end
   end
   def logout
