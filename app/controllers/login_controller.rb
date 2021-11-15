@@ -18,7 +18,7 @@ class LoginController < ApplicationController
         render 'error'
       end
     else
-      render'error'
+      render 'error'
     end
   end
   def logout

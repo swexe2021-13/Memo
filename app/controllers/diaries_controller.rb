@@ -13,7 +13,7 @@ class DiariesController < ApplicationController
         diary = Diary.new(title: params[:diary][:title], message: params[:diary][:message],
         file: file, date: Time.current)
         diary.save
-        redirect_to root_path
+        redirect_to diaries_path
     end
     
     def get_image
@@ -24,7 +24,7 @@ class DiariesController < ApplicationController
     def destroy
         diary = Diary.find(params[:id])
         diary.destroy
-        redirect_to root_path
+        redirect_to diaries_path
     end
     
     def edit
