@@ -1,6 +1,20 @@
 <% @diaries.each do |e| %>
+    <p>
     <%= e.title %>
+    <%= e.date %>
+    <%=time_ago_in_words(e.created_at)%>前<br>
     <%= e.message %>
+    </p>
+    
+    <p>
+    <%= image_tag "/get_image/#{e.id}" %>
+    <%= link_to '削除', "/diaries/#{e.id}", method: :delete %>
+    <%= link_to '編集', "/diaries/#{e.id}/edit" %>
+    </p>
 
 <% end %>
 <p><%= link_to '新規追加', '/diaries/new' %></p>
+
+<p>
+  <%= link_to 'ユーザ一覧', users_path %>
+</p>
