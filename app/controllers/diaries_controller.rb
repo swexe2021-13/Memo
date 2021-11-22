@@ -10,11 +10,23 @@ class DiariesController < ApplicationController
     end
     
     def create
-        file = params[:diary][:file].read
-        diary = Diary.new(title: params[:diary][:title], message: params[:diary][:message],
-        file: file, date: Time.current)
-        diary.save
-        redirect_to diaries_path
+        if  params[:diary][:file].present?
+            file = params[:diary][:file].read
+            diary = Diary.new(title: params[:diary][:title], message: params[:diary][:message],
+            file: file, date: Time.current)
+            diary.save
+            redirect_to diaries_path
+        else
+            diary = Diary.new(title: params[:diary][:title], message: params[:diary][:message],
+            date: Time.current)
+            
+            if diary.save
+                redirect_to diaries_path
+            else
+                render 'new'
+            end
+        end
+     
     end
     
     def get_image
