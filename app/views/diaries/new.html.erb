@@ -1,3 +1,12 @@
+<% if @diary.errors.present? %>
+<h3>エラーがあります。</h3>
+<ul>
+<% @diary.errors.full_messages.each do |msg| %>
+<li><%= msg %></li>
+<% end %>
+</ul>
+<% end %>
+
 <%= form_for @diary, url: {action: :create} do |f| %>
 <%= f.label :title, 'タイトル' %>
 <%= f.text_field :title %>

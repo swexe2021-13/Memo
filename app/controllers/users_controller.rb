@@ -15,6 +15,7 @@ class UsersController < ApplicationController
     @email = params[:user][:email]
     @user = User.new(name: @name,password: @userpass,email: @email)
     if @user.save
+      flash[:notice] = "ユーザーがひとつ登録されました"
       redirect_to root_path
       # Handle a successful save.
     else
