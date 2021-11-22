@@ -1,11 +1,11 @@
 <%= form_for @diary, url: {action: :create} do |f| %>
 <%= f.label :title, 'タイトル' %>
 <%= f.text_field :title %>
-<%= f.label :message, $question %>
+<%= f.label :message, Question.find_by(id: @question).question %>
 <%= f.text_field :message %>
-
 <%= f.label :file, 'ファイル' %>
 <%= f.file_field :file %>
+<%= f.hidden_field :qid, value: Question.find_by(id: @question).id %>
 
 <%= f.submit '登録' %>
 <% end %>

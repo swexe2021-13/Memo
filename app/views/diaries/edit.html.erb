@@ -1,7 +1,7 @@
 <%= form_for @diary , url: {action: :update} do |f| %>
 <%= f.label :title, 'タイトル' %>
 <%= f.text_field :title %>
-<%= f.label :message, $question %>
+<%= f.label :message, Question.find_by(id: @diary.qid).question %>
 <%= f.text_field :message %>
 
 <%= f.label :file, 'ファイル' %>

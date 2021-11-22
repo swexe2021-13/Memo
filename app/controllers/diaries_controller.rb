@@ -6,13 +6,13 @@ class DiariesController < ApplicationController
     
     def new
         @diary = Diary.new
-        $question = Question.offset(rand(Question.count)).first.question
+        @question = Question.offset(rand(Question.count)).first.id
     end
     
     def create
         file = params[:diary][:file].read
         diary = Diary.new(title: params[:diary][:title], message: params[:diary][:message],
-        file: file, date: Time.current)
+        file: file, date: Time.current,qid: params[:diary][:qid])
         diary.save
         redirect_to diaries_path
     end
