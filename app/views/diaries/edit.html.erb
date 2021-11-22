@@ -1,13 +1,10 @@
 <%= form_for @diary , url: {action: :update} do |f| %>
 <%= f.label :title, 'タイトル' %>
 <%= f.text_field :title %>
-<%= f.label :message, 'メッセージ' %>
+<%= f.label :message, $question %>
 <%= f.text_field :message %>
-<<<<<<< HEAD
 
-=======
 <%= f.label :file, 'ファイル' %>
 <%= f.file_field :file %>
->>>>>>> add_CRUD
 <%= f.submit '更新' %>
 <% end %>

@@ -6,6 +6,7 @@ class DiariesController < ApplicationController
     
     def new
         @diary = Diary.new
+        $question = Question.offset(rand(Question.count)).first.question
     end
     
     def create
