@@ -1,3 +1,7 @@
+<% if flash[:notice] %>
+<%= flash[:notice] %>
+<% end %>
+
 <% @diaries.each do |e| %>
     <p>
     <%= e.title %>
