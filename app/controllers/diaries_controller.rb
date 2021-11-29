@@ -22,10 +22,8 @@ class DiariesController < ApplicationController
                 render 'new'
             end
         else
-=======
             @diary = Diary.new(title: params[:diary][:title], message: params[:diary][:message],
             date: Time.current, qid: params[:diary][:qid])
->>>>>>> b0605e1966904828fa2ca435bdab0436f1ad2c11
             if @diary.save
                 flash[:notice] = '1レコード追加しました'
                 redirect_to diaries_path
