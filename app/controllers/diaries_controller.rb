@@ -10,7 +10,6 @@ class DiariesController < ApplicationController
     end
     
     def create
-<<<<<<< HEAD
         
         if  params[:diary][:file].present?
             file = params[:diary][:file].read
@@ -24,19 +23,8 @@ class DiariesController < ApplicationController
             end
             
         else
-            @diary = Diary.new(title: params[:diary][:title], message: params[:diary][:message],
-            date: Time.current)
-=======
-        if  params[:diary][:file].present?
-            file = params[:diary][:file].read
-            diary = Diary.new(title: params[:diary][:title], message: params[:diary][:message],
-            file: file, date: Time.current, qid: params[:diary][:qid])
-            diary.save
-            redirect_to diaries_path
-        else
             diary = Diary.new(title: params[:diary][:title], message: params[:diary][:message],
             date: Time.current, qid: params[:diary][:qid])
->>>>>>> 5aba0580b92a949914d0eca61adead18434bc5d5
             
             if @diary.save
                 flash[:notice] = '1レコード追加しました'
@@ -70,6 +58,6 @@ class DiariesController < ApplicationController
         diary.update(title: params[:diary][:title], message: params[:diary][:message], file: file)
         flash[:notice] = '1レコード編集しました'
         redirect_to root_path
-    
     end
 end
+
