@@ -1,0 +1,91 @@
+[33mcommit 6de1ef8901d3fb70250d0a43323cc7b412f8032f[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m, [m[1;31morigin/master[m[33m, [m[1;32mquestion2[m[33m, [m[1;32meach_user[m[33m)[m
+Author: Ubuntu <ubuntu@ip-172-31-21-56.ec2.internal>
+Date:   Mon Nov 22 08:14:29 2021 +0000
+
+    question2
+
+[33mcommit 78718e0626ec64f19e747a141136b3307e5f41cc[m[33m ([m[1;32mquestion[m[33m)[m
+Author: Ubuntu <ubuntu@ip-172-31-21-56.ec2.internal>
+Date:   Mon Nov 22 07:09:57 2021 +0000
+
+    question1
+
+[33mcommit 4256625d3bc31cd60641e6edeebbb9a39976fba6[m[33m ([m[1;32mlogin_connect_user[m[33m)[m
+Author: Ubuntu <ubuntu@ip-172-31-21-56.ec2.internal>
+Date:   Mon Nov 15 08:38:57 2021 +0000
+
+    login_connect
+
+[33mcommit 6f712948340c2f1a606211e7dc7c6262805c275f[m
+Merge: 1b006d1 710f526
+Author: Chisato Morita <1911140002c@ed.fuk.kindai.ac.jp>
+Date:   Mon Nov 15 07:05:06 2021 +0000
+
+    aaa
+
+[33mcommit 710f52693a87beb91bda09b2836a6458c6b38e33[m
+Author: Chisato Morita <1911140002c@ed.fuk.kindai.ac.jp>
+Date:   Mon Nov 15 07:00:34 2021 +0000
+
+    CRUD機能
+
+[33mcommit 55ab169b23b374d4efddf73fc2ead6ded8f8cf8d[m
+Author: Chisato Morita <1911140002c@ed.fuk.kindai.ac.jp>
+Date:   Fri Nov 12 03:22:23 2021 +0000
+
+    ユーザ登録
+
+[33mcommit 74cce4af2487182d08183ee5f9889e15a709e70f[m
+Author: Chisato Morita <1911140002c@ed.fuk.kindai.ac.jp>
+Date:   Mon Nov 8 11:47:51 2021 +0000
+
+    CRUD追加
+
+[33mcommit 1b006d1bb55f2af5f303b8f5ea9cb4c5f7ee97ab[m
+Author: Chisato Morita <1911140002c@ed.fuk.kindai.ac.jp>
+Date:   Mon Nov 8 11:18:51 2021 +0000
+
+    aaa
+
+[33mcommit 38a9dce878dbf1de9a1f83978781cf19d584f8fa[m
+Author: Chisato Morita <1911140002c@ed.fuk.kindai.ac.jp>
+Date:   Mon Nov 8 11:04:21 2021 +0000
+
+    aaa
+
+[33mcommit 3a1b234a7fc4780d87496de4ec0a5423a29198d3[m
+Merge: 69e6647 d956cc0
+Author: Chisato Morita <1911140002c@ed.fuk.kindai.ac.jp>
+Date:   Mon Nov 8 09:11:02 2021 +0000
+
+    aaa
+
+[33mcommit d956cc0f03503ac2104cb802f38104f11ba885fd[m
+Author: Chisato Morita <1911140002c@ed.fuk.kindai.ac.jp>
+Date:   Mon Nov 8 08:57:32 2021 +0000
+
+    aaa
+
+[33mcommit 69e664780098789c7a5e35aad71a6996a0fbbfbe[m[33m ([m[1;32msql_test[m[33m)[m
+Author: Ubuntu <ubuntu@ip-172-31-21-56.ec2.internal>
+Date:   Mon Nov 8 08:40:35 2021 +0000
+
+    add_login_function_fix
+
+[33mcommit cafdff875e8020a0fec94a781774d60137db7b59[m[33m ([m[1;32madd_login_function[m[33m)[m
+Author: Ubuntu <ubuntu@ip-172-31-21-56.ec2.internal>
+Date:   Mon Nov 8 08:11:19 2021 +0000
+
+    add_login_function
+
+[33mcommit 904769da8c1a9b65d722642e8c64da2152022ad2[m
+Author: Ubuntu <ubuntu@ip-172-31-21-56.ec2.internal>
+Date:   Mon Nov 8 06:21:59 2021 +0000
+
+    model
+
+[33mcommit dc128ffc37ac0250a221b55393481a1b46b83c55[m[33m ([m[1;32mmodel[m[33m)[m
+Author: Ubuntu <ubuntu@ip-172-31-21-56.ec2.internal>
+Date:   Mon Nov 1 07:32:55 2021 +0000
+
+    initial commit
