@@ -1,20 +1,32 @@
 <% if @diary.errors.present? %>
-<h3>エラーがあります。</h3>
-<ul>
-<% @diary.errors.full_messages.each do |msg| %>
-<li><%= msg %></li>
-<% end %>
-</ul>
-<% end %>
-
-<%= form_for @diary, url: {action: :create} do |f| %>
-<%= f.label :title, 'タイトル' %>
-<%= f.text_field :title %>
-<%= f.label :message, Question.find_by(id: @question).question %>
-<%= f.text_field :message %>
-<%= f.label :file, 'ファイル' %>
-<%= f.file_field :file %>
-<%= f.hidden_field :qid, value: Question.find_by(id: @question).id %>
-
-<%= f.submit '登録' %>
+ <h3>エラーがあります。</h3>
+ <ul>
+  <% @diary.errors.full_messages.each do |msg| %>
+   <li><%= msg %></li>
+  <% end %>
+ </ul>
+ <%= @question = Question.offset(rand(Question.count)).first.id %>
+ <%= form_for @diary, url: {action: :create} do |f| %>
+   <%= f.label :title, 'タイトル' %>
+   <%= f.text_field :title %>
+   <%= f.label :message, Question.find_by(id: @question).question %>
+   <%= f.text_field :message %>
+   <%= f.label :file, 'ファイル' %>
+   <%= f.file_field :file %>
+   <%= f.hidden_field :qid, value: Question.find_by(id: @question).id %>
+   <%= f.hidden_field :question, :value => @question %>
+  <%= f.submit '登録' %>
+ <% end %>
+<% else %>
+ <%= form_for @diary, url: {action: :create} do |f| %>
+  <%= f.label :title, 'タイトル' %>
+  <%= f.text_field :title %>
+  <%= f.label :message, Question.find_by(id: @question).question %>
+  <%= f.text_field :message %>
+  <%= f.label :file, 'ファイル' %>
+  <%= f.file_field :file %>
+  <%= f.hidden_field :qid, value: Question.find_by(id: @question).id %>
+  <%= f.hidden_field :question, :value => @question %>
+  <%= f.submit '登録' %>
+ <% end %>
 <% end %>
