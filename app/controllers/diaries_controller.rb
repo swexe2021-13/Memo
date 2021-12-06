@@ -10,7 +10,7 @@ class DiariesController < ApplicationController
     end
     
     def create
-        
+        @question = params[:question]
         if  params[:diary][:file].present?
             file = params[:diary][:file].read
             @diary = Diary.new(title: params[:diary][:title], message: params[:diary][:message],
@@ -19,7 +19,7 @@ class DiariesController < ApplicationController
                 flash[:notice] = '1レコード追加しました'
                 redirect_to diaries_path
             else
-                render 'new'
+                render "new" 
             end
         else
 =======
@@ -30,7 +30,7 @@ class DiariesController < ApplicationController
                 flash[:notice] = '1レコード追加しました'
                 redirect_to diaries_path
             else
-                render 'new'
+                render "new"
             end
         end
      
