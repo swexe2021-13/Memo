@@ -6,6 +6,7 @@
     <p>
     <%= e.title %>
     <%= e.date %>
+    <%= Question.find_by(id: e.qid).question %>
     <%=time_ago_in_words(e.created_at)%>前<br>
     <%= e.message %>
     </p>
