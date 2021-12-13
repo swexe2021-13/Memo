@@ -1,10 +1,41 @@
-<%= form_for @diary , url: {action: :update} do |f| %>
-<%= f.label :title, 'タイトル' %>
-<%= f.text_field :title %>
-<%= f.label :message, Question.find_by(id: @diary.qid).question %>
-<%= f.text_field :message %>
 
-<%= f.label :file, 'ファイル' %>
-<%= f.file_field :file %>
-<%= f.submit '更新' %>
-<% end %>
+<div id="wrapper">
+        <div id="header">
+           <%= image_tag 'rogo4.jpg', class: 'rogo' %>
+        </div>
+        
+        <div id="main">
+            <div id="menu">
+                <p>戻る</p>
+            </div>
+            
+        　　<div id="contents">
+                <% if @diary.errors.present? %>
+                <h3>エラーがあります。</h3>
+                <ul>
+                <% @diary.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+                <% end %>
+                </ul>
+                <% end %>
+                
+                <p><%= form_for @diary, url: {action: :update} do |f| %>
+                <p><%= f.label :title, 'タイトル' %></p>
+                <%= f.text_field :title, placeholder: "title"%></p>
+                <p><%= f.label :message, $question %></p>
+                <p><%= f.text_field :message,placeholder: "what is about?" %></p>
+                <p><%= f.label :file, 'ファイル' %></p>
+                <p><%= f.file_field :file %></p>
+                <br>
+                <p><%= f.submit '更新' %></p>
+                <% end %>
+            </div>
+        </div>
+        
+        <div id="footer">
+           (c)copy right
+       </div>
+</div>
+
+
+

@@ -1,27 +1,65 @@
-<% if flash[:notice] %>
-<%= flash[:notice] %>
-<% end %>
 
-<% @diaries.each do |e| %>
-    <p>
-    <%= e.title %>
-    <%= e.date %>
-    <%= Question.find_by(id: e.qid).question %>
-    <%=time_ago_in_words(e.created_at)%>前<br>
-    <%= e.message %>
-    </p>
+<div id="wrapper">
+    <div id="header">
+        <%= image_tag 'rogo4.jpg', class: 'rogo' %>
+    </div>
+
     
-    <p>
-    <%= image_tag "/get_image/#{e.id}" %>
-    <%= link_to '削除', "/diaries/#{e.id}", method: :delete %>
-    <%= link_to '編集', "/diaries/#{e.id}/edit" %>
-    </p>
+    <div id="main">
+      <div id="menu">
+        
+        <label class="open" for="pop-up">
+          <div class="text"><div class="button03">
+          使い方を見る</div></div>
+        </label>
+              
+        <input type="checkbox" id="pop-up">
+          <div class="overlay">
+            <div class="window">
+            <label class="close" for="pop-up">×</label>
+                  今日はどんな一日でしたか？<br>
+              		出来事を記録してみましょう。<br>
+              		書く話題に困ったら、入力フォーム上部に表示されるお題を参考にしてみてくださいね。<br>
+            </div>
+          </div><br>
+          
+          
+        <p><%= link_to '新規投稿', '/diaries/new', class: 'button01' %></p><br>
+        <p><%= link_to 'ユーザ一覧', users_path, class: 'button02' %></p><br>
+        <p><%= link_to 'ログアウト',  login_logout_path, class: 'button02' %></p><br>
+      </div>
+      
+      
+      <div id="contents">
+        <% if flash[:notice] %>
+        <%= flash[:notice] %>
+        <% end %>
+        
+        <% @diaries.each do |e| %>
+          <div class="toukou"><div class="kakomi-box1">
+            <p>
+            <h3><%= e.title %>
+            <%= e.date %>
+            <%=time_ago_in_words(e.created_at)%>前<br>
+            </h3>
+            
+            </p>
+            <h4><%= e.message %></h4></div>
+            <p>
+              <div class="img"><%= image_tag "/get_image/#{e.id}" %>
+                <%= link_to '削除', "/diaries/#{e.id}", method: :delete, class: 'button04' %>
+                <%= link_to '編集', "/diaries/#{e.id}/edit", class: 'button04' %>
+              </div>
+            </p><br>
+          </div>
+        <% end %>
+      </div>
+      
+    </div>
+    
+    <div id="footer">
+       (c)copy right
+    </div>
+    
+  </div> 
 
-<% end %>
-<p><%= link_to '新規追加', '/diaries/new' %></p>
-
-<p>
-  <%= link_to 'ユーザ一覧', users_path %>
-</p>
-
-<%= link_to 'ログアウト',  login_logout_path %>
