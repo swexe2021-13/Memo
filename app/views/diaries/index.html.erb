@@ -2,26 +2,71 @@
 <%= flash[:notice] %>
 <% end %>
 
+<% user = User.find_by(id: session[:login_uid]) %>
+<p><%= user.name %>さんログイン中です</p>
+
+<% if params[:each].nil? %>
 <% @diaries.each do |e| %>
     <p>
-    <%= e.title %>
-    <%= e.date %>
-    <%= Question.find_by(id: e.qid).question %>
-    <%=time_ago_in_words(e.created_at)%>前<br>
+    日付：<%= e.date %>
+    <p></p>
+    ユーザ名：<%= User.find_by(id: e.user_id).name %>
+    <p> </p>
+    タイトル：<%= e.title %>
+    <p> </p>
+    質問：<%= Question.find_by(id: e.qid).question %>
+    <p> </p>
     <%= e.message %>
+    <p></p>
+    <%=time_ago_in_words(e.created_at)%>前<br>
     </p>
     
     <p>
     <%= image_tag "/get_image/#{e.id}" %>
-    <%= link_to '削除', "/diaries/#{e.id}", method: :delete %>
-    <%= link_to '編集', "/diaries/#{e.id}/edit" %>
+    <% if session[:login_uid] == e.user_id %>
+      <%= link_to '削除', "/diaries/#{e.id}", method: :delete %>
+      <%= link_to '編集', "/diaries/#{e.id}/edit" %>
+    <% end %>
+    <% if session[:login_uid] == e.user_id %>
+      <%= link_to '自分の投稿のみ閲覧', diaries_path(each: e.user_id) %>
+    <% else %>
+      <%= link_to 'このユーザの投稿のみ閲覧', diaries_path(each: e.user_id) %>
+    <% end %>
     </p>
-
+    <p>--------------------------------------------------------------------</p>
 <% end %>
-<p><%= link_to '新規追加', '/diaries/new' %></p>
-
-<p>
-  <%= link_to 'ユーザ一覧', users_path %>
-</p>
-
+<%= link_to '新規追加', '/diaries/new' %>
+<p> </p>
+<%= link_to 'ユーザ一覧', users_path %>
 <%= link_to 'ログアウト',  login_logout_path %>
+<% else %>
+
+<% @diaries.each do |e| %>
+    <p>
+    日付：<%= e.date %>
+    <p></p>
+    ユーザ名：<%= User.find_by(id: e.user_id).name %>
+    <p> </p>
+    タイトル：<%= e.title %>
+    <p> </p>
+    質問：<%= Question.find_by(id: e.qid).question %>
+    <p> </p>
+    <%= e.message %>
+    <p></p>
+    <%=time_ago_in_words(e.created_at)%>前<br>
+    </p>
+    
+    <p>
+    <%= image_tag "/get_image/#{e.id}" %>
+    <% if session[:login_uid] == e.user_id %>
+      <%= link_to '削除', "/diaries/#{e.id}", method: :delete %>
+      <%= link_to '編集', "/diaries/#{e.id}/edit" %>
+    <% end %>
+    </p>
+    <p>--------------------------------------------------------------------</p>
+<% end %>
+<%= link_to '戻る', diaries_path %>
+<p> </p>
+<%= link_to 'ユーザ一覧', users_path %>
+<%= link_to 'ログアウト',  login_logout_path %>
+<% end %>

@@ -6,5 +6,7 @@
 
 <%= f.label :file, 'ファイル' %>
 <%= f.file_field :file %>
+<%= f.hidden_field :qid, value: @diary.qid %>
+<%= f.hidden_field :question, :value => @diary.qid %>
 <%= f.submit '更新' %>
 <% end %>

@@ -1,11 +1,16 @@
 
 <% @users.each do |e| %>
+<% if session[:login_uid] == e.id %>
   <p>
     <%= e.name %>
     <%= e.email %>
-    <%= e.password %>
     <%= link_to '削除', user_path(e), method: :delete %>
-    </p>
+  </p>
+<% else %>
+    <%= e.name %>
+    <%= e.email %>
+<% end %>
+
 <% end %>
 
 <p>

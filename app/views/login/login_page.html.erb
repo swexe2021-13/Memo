@@ -1,6 +1,8 @@
 <%= form_tag '/login/login_page', method: :post do %>
   <%= label_tag :name, '名前' %>
   <%= text_field_tag :name %>
+  <%= label_tag :email, 'メールアドレス' %>
+  <%= text_field_tag :email %>
   <%= label_tag :password, 'パスワード' %>
   <%= password_field_tag :password %>
   <%= submit_tag 'ログイン' %>
