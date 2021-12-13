@@ -22,12 +22,11 @@ class UsersController < ApplicationController
     end
     
   end
-  
 
   def destroy
     user = User.find(params[:id])
     user.destroy
-    redirect_to users_path
+    redirect_to login_logout_path
   end
 end
 

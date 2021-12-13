@@ -1,4 +1,3 @@
-
 <div id="wrapper">
     <div id="header">
         <%= image_tag 'rogo4.jpg', class: 'rogo' %>
@@ -35,6 +34,7 @@
         <%= flash[:notice] %>
         <% end %>
         
+        <% if params[:each].nil? %>
         <% @diaries.each do |e| %>
           <div class="toukou"><div class="kakomi-box1">
             <p>
@@ -47,12 +47,42 @@
             <h4><%= e.message %></h4></div>
             <p>
               <div class="img"><%= image_tag "/get_image/#{e.id}" %>
+              <% if session[:login_uid] == e.user_id %>
                 <%= link_to '削除', "/diaries/#{e.id}", method: :delete, class: 'button04' %>
                 <%= link_to '編集', "/diaries/#{e.id}/edit", class: 'button04' %>
+              <% end %>
+              <% if session[:login_uid] == e.user_id %>
+                <%= link_to '自分の投稿のみ閲覧', diaries_path(each: e.user_id) %>
+              <% else %>
+                <%= link_to 'このユーザの投稿のみ閲覧', diaries_path(each: e.user_id) %>
+              <% end %>
               </div>
             </p><br>
           </div>
         <% end %>
+        <% else %>
+        <% @diaries.each do |e| %>
+          <div class="toukou"><div class="kakomi-box1">
+            <p>
+            <h3><%= e.title %>
+            <%= e.date %>
+            <%=time_ago_in_words(e.created_at)%>前<br>
+            </h3>
+            
+            </p>
+            <h4><%= e.message %></h4></div>
+            <p>
+              <div class="img"><%= image_tag "/get_image/#{e.id}" %>
+              <% if session[:login_uid] == e.user_id %>
+                <%= link_to '削除', "/diaries/#{e.id}", method: :delete, class: 'button04' %>
+                <%= link_to '編集', "/diaries/#{e.id}/edit", class: 'button04' %>
+              <% end %>
+              </div>
+            </p><br>
+          </div>
+        <% end %>
+        <%= link_to '戻る', diaries_path %>
+      <% end %>
       </div>
       
     </div>
@@ -62,4 +92,3 @@
     </div>
     
   </div> 
-

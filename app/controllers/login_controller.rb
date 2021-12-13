@@ -8,12 +8,17 @@ class LoginController < ApplicationController
   end
   
   def login_page
-    if User.find_by(name: params[:name])
-      user = User.find_by(name: params[:name])
-      userpassword = user.password
-      if BCrypt::Password.new(userpassword) == params[:password]
-        session[:login_uid] = params[:name]
-        redirect_to root_path
+    if User.find_by(email: params[:email])
+      user = User.find_by(email: params[:email])
+      if user.name == params[:name]
+        userpassword = user.password
+        if BCrypt::Password.new(userpassword) == params[:password]
+          u_id = user.id
+          session[:login_uid] = u_id
+          redirect_to diaries_path
+        else
+          render 'error'
+        end
       else
         render 'error'
       end

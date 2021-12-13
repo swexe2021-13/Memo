@@ -9,7 +9,8 @@
             </div>
         　　<div id="contents">
         　　  <h2>ようこそ</h2>
-        　　    <p><%= session[:login_uid] %>　さん　ログイン中です　</p><br>
+        　　  <% user = User.find_by(id: session[:login_uid]) %>
+        　　    <p><%= user.name %>　さん　ログイン中です　</p><br>
               <p><%= link_to 'ホームへ',  diaries_path, class: 'button03' %></p>
               
             </div>
@@ -19,6 +20,4 @@
            (c)copy right
        </div>
 </div>
-
-
 

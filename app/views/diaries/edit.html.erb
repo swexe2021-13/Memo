@@ -1,4 +1,3 @@
-
 <div id="wrapper">
         <div id="header">
            <%= image_tag 'rogo4.jpg', class: 'rogo' %>
@@ -22,11 +21,13 @@
                 <p><%= form_for @diary, url: {action: :update} do |f| %>
                 <p><%= f.label :title, 'タイトル' %></p>
                 <%= f.text_field :title, placeholder: "title"%></p>
-                <p><%= f.label :message, $question %></p>
+                <p><%= f.label :message, Question.find_by(id: @diary.qid).question %></p>
                 <p><%= f.text_field :message,placeholder: "what is about?" %></p>
                 <p><%= f.label :file, 'ファイル' %></p>
                 <p><%= f.file_field :file %></p>
                 <br>
+                <%= f.hidden_field :qid, value: @diary.qid %>
+                <%= f.hidden_field :question, :value => @diary.qid %>
                 <p><%= f.submit '更新' %></p>
                 <% end %>
             </div>
@@ -36,6 +37,5 @@
            (c)copy right
        </div>
 </div>
-
 
 

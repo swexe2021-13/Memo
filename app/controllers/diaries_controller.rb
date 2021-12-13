@@ -1,7 +1,10 @@
 class DiariesController < ApplicationController
     def index
-        @diaries = Diary.all
-      
+        if params[:each].nil?
+          @diaries = Diary.all
+        else
+          @diaries = Diary.where(user_id: params[:each])
+        end
     end
     
     def new
@@ -13,8 +16,7 @@ class DiariesController < ApplicationController
         @question = params[:question]
         if  params[:diary][:file].present?
             file = params[:diary][:file].read
-            @diary = Diary.new(title: params[:diary][:title], message: params[:diary][:message],
-            file: file, date: Time.current)
+            @diary = Diary.new(title: params[:diary][:title], message: params[:diary][:message],file: file, date: Time.current, qid: params[:diary][:qid],user_id: session[:login_uid])
             if @diary.save
                 flash[:notice] = '1レコード追加しました'
                 redirect_to diaries_path
@@ -22,8 +24,7 @@ class DiariesController < ApplicationController
                 render "new" 
             end
         else
-            @diary = Diary.new(title: params[:diary][:title], message: params[:diary][:message],
-            date: Time.current)
+            @diary = Diary.new(title: params[:diary][:title], message: params[:diary][:message],date: Time.current, qid: params[:diary][:qid],user_id: session[:login_uid])
             if @diary.save
                 flash[:notice] = '1レコード追加しました'
                 redirect_to diaries_path
@@ -31,7 +32,6 @@ class DiariesController < ApplicationController
                 render "new"
             end
         end
-     
     end
     
     def get_image
@@ -52,10 +52,16 @@ class DiariesController < ApplicationController
     
     def update
         diary = Diary.find(params[:id])
-        file = params[:diary][:file].read
-        diary.update(title: params[:diary][:title], message: params[:diary][:message], file: file)
-        flash[:notice] = '1レコード編集しました'
-        redirect_to root_path
+        if  params[:diary][:file].present?
+          file = params[:diary][:file].read
+          diary.update(title: params[:diary][:title], message: params[:diary][:message], file: file, date: Time.current, qid: params[:diary][:qid],user_id: session[:login_uid])
+          flash[:notice] = '1レコード編集しました'
+          redirect_to diaries_path
+        else
+          diary.update(title: params[:diary][:title], message: params[:diary][:message], date: Time.current, qid: params[:diary][:qid],user_id: session[:login_uid])
+          flash[:notice] = '1レコード編集しました'
+          redirect_to diaries_path
+        end
     end
 end
 

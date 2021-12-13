@@ -12,10 +12,16 @@
       
       <div id="contents">
         <% @users.each do |e| %>
-        <p><%= e.name %>
-        <%= e.email %>
-        <%= e.password %>
-        <%= link_to '削除', user_path(e), method: :delete %></p>
+          <% if session[:login_uid] == e.id %>
+            <p>
+            <%= e.name %>
+            <%= e.email %>
+            <%= link_to '削除', user_path(e), method: :delete %>
+            </p>
+          <% else %>
+            <%= e.name %>
+            <%= e.email %>
+          <% end %>
         <% end %>
       </div>
       
