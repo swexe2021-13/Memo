@@ -1,8 +1,31 @@
-<%= form_tag '/login/login_page', method: :post do %>
-  <%= label_tag :name, '名前' %>
-  <%= text_field_tag :name %>
-  <%= label_tag :password, 'パスワード' %>
-  <%= password_field_tag :password %>
-  <%= submit_tag 'ログイン' %>
-<% end %> 
-<%= link_to '新規追加',  new_user_path %>
+<div id="wrapper">
+    <div id="header">
+       <%= image_tag 'rogo4.jpg', class: 'rogo' %>
+    </div>
+        
+    <div id="main">
+      <div id="menu">
+        <p>戻る</p>
+        <p><%= link_to '新規登録',  new_user_path, class: 'button02' %></p>
+      </div>
+            
+      <div id="contents">
+        <p><%= form_tag '/login/login_page', method: :post do %></p>
+        <p><%= label_tag :name, 'ユーザー名' %></p>
+        <p><%= text_field_tag :name %></p>
+        <p><%= label_tag :password, 'パスワード' %></p>
+        <p><%= password_field_tag :password %></p>
+        <br>
+        <p><%= submit_tag 'ログイン' %></p>
+        <% end %> 
+        
+      </div>
+    </div>
+    
+    <div id="footer">
+      (c)copy right
+    </div>
+</div>
+
+
+

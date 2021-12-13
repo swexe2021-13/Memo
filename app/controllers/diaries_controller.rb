@@ -14,7 +14,7 @@ class DiariesController < ApplicationController
         if  params[:diary][:file].present?
             file = params[:diary][:file].read
             @diary = Diary.new(title: params[:diary][:title], message: params[:diary][:message],
-            file: file, date: Time.current, qid: params[:diary][:qid])
+            file: file, date: Time.current)
             if @diary.save
                 flash[:notice] = '1レコード追加しました'
                 redirect_to diaries_path
@@ -23,7 +23,7 @@ class DiariesController < ApplicationController
             end
         else
             @diary = Diary.new(title: params[:diary][:title], message: params[:diary][:message],
-            date: Time.current, qid: params[:diary][:qid])
+            date: Time.current)
             if @diary.save
                 flash[:notice] = '1レコード追加しました'
                 redirect_to diaries_path

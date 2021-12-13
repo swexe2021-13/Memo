@@ -1,20 +1,38 @@
-<% if @diary.errors.present? %>
-<h3>エラーがあります。</h3>
-<ul>
-<% @diary.errors.full_messages.each do |msg| %>
-<li><%= msg %></li>
-<% end %>
-</ul>
-<% end %>
-
-<%= form_for @diary, url: {action: :create} do |f| %>
-<%= f.label :title, 'タイトル' %>
-<%= f.text_field :title %>
-<%= f.label :message, Question.find_by(id: @question).question %>
-<%= f.text_field :message %>
-<%= f.label :file, 'ファイル' %>
-<%= f.file_field :file %>
-<%= f.hidden_field :qid, value: Question.find_by(id: @question).id %>
-
-<%= f.submit '登録' %>
-<% end %>
+<div id="wrapper">
+        <div id="header">
+           <%= image_tag 'rogo4.jpg', class: 'rogo' %>
+        </div>
+        
+        <div id="main">
+            <div id="menu">
+                <p>戻る</p>
+            </div>
+            
+        　　<div id="contents">
+                <% if @diary.errors.present? %>
+                <h3>エラーがあります。</h3>
+                <ul>
+                <% @diary.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+                <% end %>
+                </ul>
+                <% end %>
+                
+                <p><%= form_for @diary, url: {action: :create} do |f| %>
+                <p><%= f.label :title, 'タイトル' %></p>
+                <%= f.text_field :title, placeholder: "Title"%></p>
+                <h4><p>お題：<%= f.label :message, Question.find_by(id: @question).question %></p></h4>
+                <p><%= f.text_field :message,placeholder: "How was your day?" %></p>
+                <p><%= f.label :file, 'ファイル' %></p>
+                <p><%= f.file_field :file %></p>
+                <%= f.hidden_field :qid, value: Question.find_by(id: @question).id %>
+                <br>
+                <p><%= f.submit '投稿する' %></p>
+                <% end %>
+            </div>
+        </div>
+        
+        <div id="footer">
+           (c)copy right
+       </div>
+</div>
