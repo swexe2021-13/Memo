@@ -13,6 +13,8 @@
         <p><%= form_tag '/login/login_page', method: :post do %></p>
         <p><%= label_tag :name, 'ユーザー名' %></p>
         <p><%= text_field_tag :name %></p>
+        <p><%= label_tag :email, 'メールアドレス' %></p>
+        <p><%= text_field_tag :email %></p>
         <p><%= label_tag :password, 'パスワード' %></p>
         <p><%= password_field_tag :password %></p>
         <br>

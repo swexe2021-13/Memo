@@ -1,3 +1,4 @@
+<% if session[:login_id].nil? %>
 <div id="wrapper">
         <div id="header">
             <%= image_tag 'rogo4.jpg', class: 'rogo' %>
@@ -9,9 +10,9 @@
             </div>
         　　<div id="contents">
         　　  <h2>ようこそ</h2>
-        　　  <% user = User.find_by(id: session[:login_uid]) %>
-        　　    <p><%= user.name %>　さん　ログイン中です　</p><br>
-              <p><%= link_to 'ホームへ',  diaries_path, class: 'button03' %></p>
+        　　    <% user = User.find_by(id: session[:login_uid]) %>
+        　　    <p><%= user.name %>　さん　ログイン中です<p>
+        　　    <p><%= link_to 'ホームへ',  diaries_path, class: 'button03' %></p>
               
             </div>
         </div>
@@ -20,4 +21,8 @@
            (c)copy right
        </div>
 </div>
+<% else %>
+<% redirect_to  login_login_page_path %>
+<% end %>
+
 
