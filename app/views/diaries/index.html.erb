@@ -37,16 +37,12 @@
         <% if params[:each].nil? %>
         <% @diaries.each do |e| %>
           <div class="toukou"><div class="kakomi-box1">
-            <p>
+            <header align="right"><%= e.date %>   <%=time_ago_in_words(e.created_at)%>前<br></header>
             <h3>
             <% user = User.find_by(id: e.user_id) %>
             <p><%= user.name %>さん</p>
             <%= e.title %>
-            <%= e.date %>
-            <%=time_ago_in_words(e.created_at)%>前<br>
             </h3>
-            
-            </p>
             <h4><%= e.message %></h4></div>
             <p>
               <div class="img">
