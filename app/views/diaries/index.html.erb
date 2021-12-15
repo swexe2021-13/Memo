@@ -40,16 +40,20 @@
             <header align="right"><%= e.date %>   <%=time_ago_in_words(e.created_at)%>前<br></header>
             <h3>
             <% user = User.find_by(id: e.user_id) %>
-            <p><%= user.name %>さん</p>
+            <p　align="center"><%= user.name %>さん</p>
+            <p>　</p>
             <%= e.title %>
             </h3>
-            <h4><%= e.message %></h4></div>
+            <p>　</p>
+            <h4><%= safe_join(e.message.split("\n"),tag(:br)) %></h4>
             <p>
               <div class="img">
               <% if e.file.present? %>
+              <p>　</p>
               <%= image_tag "/get_image/#{e.id}" %>
               <% end %>
-
+            </div>
+            </div>
               <% if session[:login_uid] == e.user_id %>
                 <p> </p>
                 <%= link_to '削除', "/diaries/#{e.id}", method: :delete, class: 'button04' %>
@@ -60,34 +64,32 @@
               <% else %>
                 <p align="center"><%= link_to 'このユーザの投稿のみ閲覧', diaries_path(each: e.user_id) %></p>
               <% end %>
-              </div>
+              
             </p><br>
           </div>
         <% end %>
         <% else %>
         <% @diaries.each do |e| %>
           <div class="toukou"><div class="kakomi-box1">
-            <p>
+            <header align="right"><%= e.date %>   <%=time_ago_in_words(e.created_at)%>前<br></header>
+            <h3>
             <% user = User.find_by(id: e.user_id) %>
             <p><%= user.name %>さん</p>
-            <h3><%= e.title %>
-            <%= e.date %>
-            <%=time_ago_in_words(e.created_at)%>前<br>
+            <%= e.title %>
             </h3>
-            
-            </p>
-            <h4><%= e.message %></h4></div>
+            <h4><%= e.message %></h4>
             <p>
               <div class="img">
-                <% if e.file.present? %>
-                <%= image_tag "/get_image/#{e.id}" %>
-                <% end %>
+              <% if e.file.present? %>
+              <%= image_tag "/get_image/#{e.id}" %>
+              <% end %>
+              </div>
+              </div>
                 <p> </p>
                 <% if session[:login_uid] == e.user_id %>
                 <%= link_to '削除', "/diaries/#{e.id}", method: :delete, class: 'button04' %>
                 <%= link_to '編集', "/diaries/#{e.id}/edit", class: 'button04' %>
               <% end %>
-              </div>
             </p><br>
           </div>
         <% end %>

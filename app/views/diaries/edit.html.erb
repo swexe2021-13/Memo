@@ -5,7 +5,8 @@
         
         <div id="main">
             <div id="menu">
-                <p>戻る</p>
+                <p><%= link_to 'ホームへ', diaries_path, class: 'button02' %></p><br>
+                <p><%= link_to 'ログアウト',  login_logout_path, class: 'button02' %></p><br>
             </div>
             
         　　<div id="contents">
@@ -22,7 +23,7 @@
                 <p><%= f.label :title, 'タイトル' %></p>
                 <%= f.text_field :title, placeholder: "title"%></p>
                 <p><%= f.label :message, Question.find_by(id: @diary.qid).question %></p>
-                <p><%= f.text_field :message,placeholder: "what is about?" %></p>
+                <p><%= f.text_area :message,size: "70x10",placeholder: "what is about?" %></p>
                 <p><%= f.label :file, 'ファイル' %></p>
                 <p><%= f.file_field :file %></p>
                 <br>

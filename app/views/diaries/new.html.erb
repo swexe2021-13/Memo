@@ -23,7 +23,7 @@
                 <p><%= f.label :title, 'タイトル' %></p>
                 <%= f.text_field :title, placeholder: "Title"%></p>
                 <h4><p>お題：<%= f.label :message, Question.find_by(id: @question).question %></p></h4>
-                <p><%= f.text_field :message,placeholder: "How was your day?" %></p>
+                <p><%= f.text_area :message,size: "70x10",placeholder: "How was your day?" %></p>
                 <p><%= f.label :file, 'ファイル' %></p>
                 <p><%= f.file_field :file %></p>
                 <%= f.hidden_field :qid, value: Question.find_by(id: @question).id %>
