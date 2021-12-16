@@ -22,7 +22,7 @@
                 <p><%= form_for @diary, url: {action: :create} do |f| %>
                 <p><%= f.label :title, 'タイトル' %></p>
                 <%= f.text_field :title, placeholder: "Title"%></p>
-                <h4><p>お題：<%= f.label :message, Question.find_by(id: @question).question %></p></h4>
+                <h4>お題：<%= f.label :message, Question.find_by(id: @question).question %><%=link_to("/diaries/new") do %><div align="center"><button class="btn btn-secondary btn-lg" >お題を変更</button></div><%end%></h4>
                 <p><%= f.text_area :message,size: "70x10",placeholder: "How was your day?" %></p>
                 <p><%= f.label :file, 'ファイル' %></p>
                 <p><%= f.file_field :file %></p>
