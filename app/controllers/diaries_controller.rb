@@ -2,8 +2,10 @@ class DiariesController < ApplicationController
     def index
         if params[:each].nil?
           @diaries = Diary.all
+          @q = Question.all
         else
           @diaries = Diary.where(user_id: params[:each])
+          @q = Question.all
         end
     end
     

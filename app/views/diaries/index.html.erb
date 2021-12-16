@@ -26,7 +26,13 @@
         <p><%= link_to '新規投稿', '/diaries/new', class: 'button01' %></p><br>
         <p><%= link_to 'ユーザ一覧', users_path, class: 'button02' %></p><br>
         <p><%= link_to 'ログアウト',  login_logout_path, class: 'button02' %></p><br>
+        <p>　</p>
+        <h3>お題一覧</h3>
+        <% @q.each do |e| %>
+          <div align="left"><p><%= link_to "##{e.question}", diaries_path(q: e.id) %></p></div>
+        <% end %>
       </div>
+      
       
       
       <div id="contents">
@@ -35,39 +41,76 @@
         <% end %>
         
         <% if params[:each].nil? %>
-        <% @diaries.each do |e| %>
-          <div class="toukou"><div class="kakomi-box1">
-            <header align="right"><%= e.date %>   <%=time_ago_in_words(e.created_at)%>前<br></header>
-            <h3>
-            <% user = User.find_by(id: e.user_id) %>
-            <p　align="center"><%= user.name %>さん</p>
-            <p>　</p>
-            <%= e.title %>
-            </h3>
-            <p>　</p>
-            <h4><%= safe_join(e.message.split("\n"),tag(:br)) %></h4>
-            <p>
-              <div class="img">
-              <% if e.file.present? %>
-              <p>　</p>
-              <%= image_tag "/get_image/#{e.id}" %>
+          <% if params[:q].present? %>
+            <% @diaries.each do |e| %>
+              <% if params[:q].to_i == e.qid %>
+                <div class="toukou"><div class="kakomi-box1">
+                <header align="right"><%= e.date %>   <%=time_ago_in_words(e.created_at)%>前<br></header>
+                <h3>
+                <% user = User.find_by(id: e.user_id) %>
+                <p　align="center"><%= user.name %>さん</p>
+                <p>　</p>
+                <%= e.title %>
+                </h3>
+                <p>　</p>
+                <h4><%= safe_join(e.message.split("\n"),tag(:br)) %></h4>
+                <p>
+                <div class="img">
+                <% if e.file.present? %>
+                  <p>　</p>
+                  <%= image_tag "/get_image/#{e.id}" %>
+                <% end %>
+                </div>
+                </div>
+                <% if session[:login_uid] == e.user_id %>
+                  <p> </p>
+                  <%= link_to '削除', "/diaries/#{e.id}", method: :delete, class: 'button04' %>
+                  <%= link_to '編集', "/diaries/#{e.id}/edit", class: 'button04' %>
+                <% end %>
+                <% if session[:login_uid] == e.user_id %>
+                  <p align="center"><%= link_to '自分の投稿のみ閲覧', diaries_path(each: e.user_id) %></p>
+                <% else %>
+                  <p align="center"><%= link_to 'このユーザの投稿のみ閲覧', diaries_path(each: e.user_id) %></p>
+                <% end %>
+                </p><br>
+                </div>
               <% end %>
-            </div>
-            </div>
-              <% if session[:login_uid] == e.user_id %>
+            <% end %>
+            <%= link_to '戻る', diaries_path %>
+          <%else%>
+            <% @diaries.each do |e| %>
+             <div class="toukou"><div class="kakomi-box1">
+             <header align="right"><%= e.date %>   <%=time_ago_in_words(e.created_at)%>前<br></header>
+             <h3>
+             <% user = User.find_by(id: e.user_id) %>
+             <p　align="center"><%= user.name %>さん</p>
+             <p>　</p>
+             <%= e.title %>
+             </h3>
+             <p>　</p>
+             <h4><%= safe_join(e.message.split("\n"),tag(:br)) %></h4>
+             <p>
+             <div class="img">
+             <% if e.file.present? %>
+               <p>　</p>
+               <%= image_tag "/get_image/#{e.id}" %>
+             <% end %>
+             </div>
+             </div>
+             <% if session[:login_uid] == e.user_id %>
                 <p> </p>
                 <%= link_to '削除', "/diaries/#{e.id}", method: :delete, class: 'button04' %>
                 <%= link_to '編集', "/diaries/#{e.id}/edit", class: 'button04' %>
-              <% end %>
-              <% if session[:login_uid] == e.user_id %>
+             <% end %>
+             <% if session[:login_uid] == e.user_id %>
                 <p align="center"><%= link_to '自分の投稿のみ閲覧', diaries_path(each: e.user_id) %></p>
-              <% else %>
+             <% else %>
                 <p align="center"><%= link_to 'このユーザの投稿のみ閲覧', diaries_path(each: e.user_id) %></p>
-              <% end %>
-              
-            </p><br>
-          </div>
-        <% end %>
+             <% end %>
+             </p><br>
+             </div>
+            <% end %>
+          <% end %>
         <% else %>
         <% @diaries.each do |e| %>
           <div class="toukou"><div class="kakomi-box1">
